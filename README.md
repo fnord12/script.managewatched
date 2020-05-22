@@ -53,7 +53,7 @@ Personally i only have Reset and Mark Watched set to keys.  The rest are used ra
 
 3. If you want the context menu item to appear under the Manage... menu instead of the main context menu, you can edit the addon.xml file.  Change ```<menu id="kodi.core.main">``` to ```<menu id="kodi.core.manage">```.  If you want, while you are in that file, you can also update the context menu items to remind you of the keyboard shortcuts (e.g. ```<label>Reset Watched</label>``` to ```<label>Reset Watched (Cntrl-R)</label>```.  You can even adjust the language if you don't prefer English since i didn't provide a .po file (sorry!).
 
-Change will take affect after you restart Kodi.
+Change will take effect after you restart Kodi.
 
 4. Reset Watched and Mark Watched set the Last Played Date to a distant date in the past, to retain the fact that it was watched without affecting your lists.  The date is "2000-01-01 00:00:01".  If you don't like that date and you are feeling adventurous, you can update managewatched.py.  The variable is assigned that date in two places.
 
