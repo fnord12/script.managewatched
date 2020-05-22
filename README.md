@@ -51,7 +51,7 @@ There are five functions you can call. All are available via the context menu, u
 
 Personally i only have Reset and Mark Watched set to keys.  The rest are used rarely enough that the context menu suffices.  And the stock Kodi Mark Unwatched works as well (and is faster) than my Mark Unwatched.
 
-3. If you want the context menu item to appear under the Manage... menu instead of the main context menu, you can edit the addon.xml file.  Change "<menu id="kodi.core.main">" to "<menu id="kodi.core.manage">".  If you want, while you are in that file, you can also update the context menu items to remind you of the keyboard shortcuts (e.g. "<label>Reset Watched</label>" to "<label>Reset Watched (Cntrl-R)</label>".  You can even adjust the language if you don't prefer English since i didn't provide a .po file (sorry!).
+3. If you want the context menu item to appear under the Manage... menu instead of the main context menu, you can edit the addon.xml file.  Change ```<menu id="kodi.core.main">``` to ```<menu id="kodi.core.manage">```.  If you want, while you are in that file, you can also update the context menu items to remind you of the keyboard shortcuts (e.g. ```<label>Reset Watched</label>``` to ```<label>Reset Watched (Cntrl-R)</label>```.  You can even adjust the language if you don't prefer English since i didn't provide a .po file (sorry!).
 
 Change will take affect after you restart Kodi.
 
