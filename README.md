@@ -23,7 +23,7 @@ __Mark Unwatched__ - Clears all three fields (same as stock Kodi)
 
 __Clear Resume__ - Clears the resume field only.
 
-__Edit Played Dated__ - Manually edit the Last Played Date field.
+__Edit Played Date__ - Manually edit the Last Played Date field.
 
 ---
 ## Setup
@@ -85,6 +85,8 @@ A tip if using MYSQL:
 1. This script uses JSON to update the fields.  JSON is SLOW.  This will be noticible mainly when affecting containers (TVShows, Seasons, and Movie Sets).  For large containers, Kodi may feel like it is hanging.  In my experience, it will eventually finish.
 
 2. In order to make your changes visible to you, i use Kodi's Skin Refresh function.  The Skin Refresh function was really meant to allow Skin developers the ability to check their work, and it occassionally/rarely causes a crash.
+
+3. As noted above, i needed to set the Last Played field to some old date for some of the functions.  It uses "2000-01-01 00:00:01".  You can edit that default date in the code if you want, or you can use Edit Played Date on a case by case basis.  (If enough people find it useful, i can make this and a few other parameters configurable through a normal Kodi Addons > Settings screen).
 
 ---
 ### Warnings
