@@ -1,0 +1,3 @@
+import managewatched
+
+managewatched.editLastPlayed()
