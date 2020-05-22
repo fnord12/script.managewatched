@@ -30,7 +30,7 @@ __Edit Played Date__ - Manually edit the Last Played Date field.
 
 1. Install the add-on (obviously)
 
-2. If you want to map the individual functions to keys, you can adjust your keymap file](https://kodi.wiki/view/Keymap#Location_of_keymaps).
+2. The functions will now be available in the Context Menu.  But if you want to map the individual functions to keys, you can adjust your keymap file](https://kodi.wiki/view/Keymap#Location_of_keymaps).
 
 There are five functions you can call. All are available via the context menu, under Manage Watched.  The example shows them mapped to example keys; you can choose whatever keys you want:
 
