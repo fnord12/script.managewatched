@@ -17,7 +17,7 @@ Sometimes (for me, often!) you just want to update ONE of those fields.  You wan
 ## The functions:
 __Reset Watched__ - Clears the Last Played value and resume data without affecting Playcount (Watch Status).  This is for when you want to retain the fact that something was watched but don't need it on your Recently Watched and Continue Watching playlists.
 
-__Mark Watched__ - Marks a video watched without affecting the Last Played value.  You want that checkmark, but don't need to see it on Recently Watched.
+__Mark Watched__ - Marks a video watched without affecting the Last Played value.  For indicating that you watched something a long time ago.  You want that checkmark, but don't need to see it on Recently Watched.
 
 __Mark Unwatched__ - Clears all three fields (same as stock Kodi)
 
@@ -30,7 +30,7 @@ __Edit Played Date__ - Manually edit the Last Played Date field.
 
 1. Install the add-on (obviously)
 
-2. If you want to map the individual functions to keys, you can adjust your keymap file](https://kodi.wiki/view/Keymap#Location_of_keymaps).
+2. The functions will now be available in the Context Menu.  But if you want to map the individual functions to keys, you can adjust your [keymap file](https://kodi.wiki/view/Keymap#Location_of_keymaps).
 
 There are five functions you can call. All are available via the context menu, under Manage Watched.  The example shows them mapped to example keys; you can choose whatever keys you want:
 
@@ -51,9 +51,9 @@ There are five functions you can call. All are available via the context menu, u
 
 Personally i only have Reset and Mark Watched set to keys.  The rest are used rarely enough that the context menu suffices.  And the stock Kodi Mark Unwatched works as well (and is faster) than my Mark Unwatched.
 
-3. If you want the context menu item to appear under the Manage... menu instead of the main context menu, you can edit the addon.xml file.  Change "<menu id="kodi.core.main">" to "<menu id="kodi.core.manage">".  If you want, while you are in that file, you can also update the context menu items to remind you of the keyboard shortcuts (e.g. "<label>Reset Watched</label>" to "<label>Reset Watched (Cntrl-R)</label>".  You can even adjust the language if you don't prefer English since i didn't provide a .po file (sorry!).
+3. If you want the context menu item to appear under the Manage... menu instead of the main context menu, you can edit the addon.xml file.  Change ```<menu id="kodi.core.main">``` to ```<menu id="kodi.core.manage">```.  If you want, while you are in that file, you can also update the context menu items to remind you of the keyboard shortcuts (e.g. ```<label>Reset Watched</label>``` to ```<label>Reset Watched (Cntrl-R)</label>```.  You can even adjust the language if you don't prefer English since i didn't provide a .po file (sorry!).
 
-Change will take affect after you restart Kodi.
+Change will take effect after you restart Kodi.
 
 4. Reset Watched and Mark Watched set the Last Played Date to a distant date in the past, to retain the fact that it was watched without affecting your lists.  The date is "2000-01-01 00:00:01".  If you don't like that date and you are feeling adventurous, you can update managewatched.py.  The variable is assigned that date in two places.
 

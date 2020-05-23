@@ -1,3 +1,3 @@
 import managewatched
 
-managewatched.markUnwatch()
+managewatched.markUnWatch()
