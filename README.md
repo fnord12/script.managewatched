@@ -17,7 +17,7 @@ Sometimes (for me, often!) you just want to update ONE of those fields.  You wan
 ## The functions:
 __Reset Watched__ - Clears the Last Played value and resume data without affecting Playcount (Watch Status).  This is for when you want to retain the fact that something was watched but don't need it on your Recently Watched and Continue Watching playlists.
 
-__Mark Watched__ - Marks a video watched without affecting the Last Played value.
+__Mark Watched__ - Marks a video watched without affecting the Last Played value.  You want that checkmark, but don't need to see it on Recently Watched.
 
 __Mark Unwatched__ - Clears all three fields (same as stock Kodi)
 
