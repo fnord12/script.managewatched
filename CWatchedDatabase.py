@@ -49,3 +49,59 @@ class CVideoDatabase:
         
         self.cur.execute(sql)
         return self.cur.fetchall()
+    
+    def getFileIDDB(self,assetTYPE,ID):
+        
+        searchID = "id" + assetTYPE.title()
+        
+        sql = "select idFile from %s where %s = '%s'" % (assetTYPE,searchID,ID)
+        
+        debug("sql = ", sql)
+        
+        self.cur.execute(sql)
+        return self.cur.fetchall()
+    
+        
+    def updateResumeDB(self,FileID,NewResume):
+        sql = "update bookmark set timeInSeconds = '%s' where idFile = '%s'" % (NewResume, FileID)
+        
+        debug("sql = ", sql)
+        
+        db = CDatabase()
+        cur = db.con.cursor()
+        cur.execute(sql)
+        db.con.commit()
+        
+    def markWatchedDB(self,FileID,NewCount,NewLastPlayed):
+        sql = "update files set playCount = '%s', lastPlayed  = '%s' where idFile = '%s'" % (NewCount,NewLastPlayed,FileID)
+        
+        debug("sql = ", sql)
+        
+        db = CDatabase()
+        cur = db.con.cursor()
+        cur.execute(sql)
+        db.con.commit()
+        
+    def markUnWatchedDB(self,FileID):
+        sql = "update files set playCount = NULL, lastPlayed  = NULL where idFile = '%s'" % (FileID)
+        
+        debug("sql = ", sql)
+        
+        db = CDatabase()
+        cur = db.con.cursor()
+        cur.execute(sql)
+        db.con.commit()
+        
+    def resetWatchedDB(self,FileID,NewLastPlayed):
+        sql = "update files set lastPlayed  = '%s' where idFile = '%s'" % (NewLastPlayed,FileID)
+        
+        debug("sql = ", sql)
+        
+        db = CDatabase()
+        cur = db.con.cursor()
+        cur.execute(sql)
+        db.con.commit()
+    
+    
+    
+    

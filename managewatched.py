@@ -9,6 +9,8 @@ import datetime
 
 from CWatchedDatabase import CVideoDatabase
 
+Updater = "JSON"
+
 def debug(msg, *args):
     try:
         txt=u''
@@ -42,8 +44,23 @@ def GetVideosInCollection(assetTYPE,ID):
     debug ("VideosTuple = ", VideosTuple)
     return VideosTuple
 
+def getFileID(assetTYPE,ID):
+    debug("getFileID")
+    vdb = CVideoDatabase()
+    FileIDTuple = vdb.getFileIDDB(assetTYPE,ID)
+    FileIDList = [list(x) for x in FileIDTuple]
+    FileID = FileIDList[0][0]
+    return FileID
+
 def process(assetTYPE,ID,NewCount,NewResume,NewLastPlayed):
     debug("process")
+    if Updater == "DB":
+        processWithDB(assetTYPE,ID,NewCount,NewResume,NewLastPlayed)
+    else:
+        processWithJSON(assetTYPE,ID,NewCount,NewResume,NewLastPlayed)
+
+def processWithJSON(assetTYPE,ID,NewCount,NewResume,NewLastPlayed):
+    debug("processWithJSON")
     
     if assetTYPE == 'movie':
         response = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "VideoLibrary.SetMovieDetails", "params": {"movieid" : %d, "playcount": %d, "lastplayed": "%s", "resume": {"position": %d} }} ' % (ID, NewCount, NewLastPlayed, NewResume))
@@ -53,8 +70,26 @@ def process(assetTYPE,ID,NewCount,NewResume,NewLastPlayed):
         assetMsg = "Invalid item selected: '%s'" % assetTYPE
         xbmc.executebuiltin("Notification(\"Reset Watched\", \"%s\")" % assetMsg)
         
+def processWithDB(assetTYPE,ID,NewCount,NewResume,NewLastPlayed):
+    debug("processWithDB")
+    vdb = CVideoDatabase()
+    FileID = getFileID(assetTYPE,ID)
+    vdb.updateResumeDB(FileID,NewResume)
+    
+    if NewLastPlayed == "":
+        vdb.markUnWatchedDB(FileID)
+    else:
+        vdb.markWatchedDB(FileID,NewCount,NewLastPlayed)
+        
 def reset(assetTYPE,ID,NewResume,NewLastPlayed):
-    debug("reset")
+     debug("reset")
+     if Updater == "DB":
+        resetWithDB(assetTYPE,ID,NewResume,NewLastPlayed)
+     else:
+        resetWithJSON(assetTYPE,ID,NewResume,NewLastPlayed)       
+        
+def resetWithJSON(assetTYPE,ID,NewResume,NewLastPlayed):
+    debug("resetWithJSON")
     
     if assetTYPE == 'movie':
         response = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "VideoLibrary.SetMovieDetails", "params": {"movieid" : %d, "lastplayed": "%s", "resume": {"position": %d} }} ' % (ID, NewLastPlayed, NewResume))
@@ -66,8 +101,25 @@ def reset(assetTYPE,ID,NewResume,NewLastPlayed):
         assetMsg = "Invalid item selected: '%s'" % assetTYPE
         xbmc.executebuiltin("Notification(\"Reset Watched\", \"%s\")" % assetMsg)
         
+def resetWithDB(assetTYPE,ID,NewResume,NewLastPlayed):
+    debug("resetWithDB")
+    
+    debug("processWithDB")
+    vdb = CVideoDatabase()
+    FileID = getFileID(assetTYPE,ID)
+    vdb.updateResumeDB(FileID,NewResume)
+    vdb.resetWatchedDB(FileID,NewLastPlayed)
+        
 def clear(assetTYPE,ID,NewResume):
-    debug ("clear")
+    debug("clear")
+    
+    if Updater == "DB":
+        clearWithDB(assetTYPE,ID,NewResume)
+    else:
+        clearWithJSON(assetTYPE,ID,NewResume)
+        
+def clearWithJSON(assetTYPE,ID,NewResume):
+    debug ("clearWithJSON")
     
     if assetTYPE == 'movie':
         response = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "VideoLibrary.SetMovieDetails", "params": {"movieid" : %d, "resume": {"position": %d} }} ' % (ID, NewResume))
@@ -76,6 +128,15 @@ def clear(assetTYPE,ID,NewResume):
     else:
         assetMsg = "Invalid item selected: '%s'" % assetTYPE
         xbmc.executebuiltin("Notification(\"Reset Watched\", \"%s\")" % assetMsg)
+        
+        
+def clearWithDB(assetTYPE,ID,NewResume):
+    debug ("clearWithDB")
+    
+    debug("processWithDB")
+    vdb = CVideoDatabase()
+    FileID = getFileID(assetTYPE,ID)
+    vdb.updateResumeDB(FileID,NewResume)
 
 def markWatch():
     debug ("markWatch")
@@ -216,6 +277,7 @@ def resetWatch():
             debug ('EpisodeID= ', EpisodeID)
             reset('episode',EpisodeID,NewResume,NewLastPlayed)
             i+= 1
+        debug('Resetting Sking')
         xbmc.executebuiltin('ReloadSkin()')
     elif assetTYPE == 'season':    
         EpisodesTuple = GetVideosInCollection(assetTYPE,ID)
@@ -257,7 +319,7 @@ def clearResume():
     NewResume = 0
     
     if assetTYPE == 'movie' or assetTYPE == 'episode':
-        reset(assetTYPE,ID,NewResume)
+        clear(assetTYPE,ID,NewResume)
         xbmc.executebuiltin('ReloadSkin()')
         
     elif assetTYPE == 'tvshow':

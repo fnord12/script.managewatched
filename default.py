@@ -23,23 +23,32 @@ def debug(msg, *args):
         print "Error in Debugoutput"
         print msg
         print args
+        
+assetTYPE = xbmc.getInfoLabel('ListItem.DBtype')
+acceptedAssetTypes = ['episode', 'tvshow', 'movie', 'set', 'season']
 
 parser = sys.argv[1]
 
-if parser == "mark":
-    managewatched.markWatch()
-    
-elif parser == "reset":
-    managewatched.resetWatch()
-    
-elif parser == "clear":
-    managewatched.clearResume()
+if assetTYPE in acceptedAssetTypes:
 
-elif parser == "edit":
-    managewatched.editLastPlayed()    
+    if parser == "mark":
+        managewatched.markWatch()
+        
+    elif parser == "reset":
+        managewatched.resetWatch()
+        
+    elif parser == "clear":
+        managewatched.clearResume()
+        
+    elif parser == "edit":
+        managewatched.editLastPlayed()    
 
-elif parser == "unmark":
-    managewatched.markUnWatch()
+    elif parser == "unmark":
+        managewatched.markUnWatch()
 
+    else:
+        debug("Unknown parser")
+        
 else:
-    debug("Unknown parser")
+    assetMsg = "Invalid item selected: '%s'" % assetTYPE
+    xbmc.executebuiltin("Notification(\"Reset Watched\", \"%s\")" % assetMsg)
