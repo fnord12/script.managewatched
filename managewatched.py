@@ -449,7 +449,7 @@ def editLastPlayed():
             debug ('NewLastPlayed = ', NewLastPlayed)
             
             if validateDate(NewLastPlayed):
-                response = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "VideoLibrary.SetEpisodeDetails", "params": {"movieid" : %d, "lastplayed": "%s" }} ' % (ID, NewLastPlayed))
+                response = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "VideoLibrary.SetEpisodeDetails", "params": {"episodeid" : %d, "lastplayed": "%s" }} ' % (ID, NewLastPlayed))
             
                 debug('JSON response =', response)
                 xbmc.executebuiltin('ReloadSkin()')
