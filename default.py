@@ -6,23 +6,16 @@ import xbmcgui
 import managewatched
 
 def debug(msg, *args):
-    try:
-        txt=u''
-        msg=unicode(msg)
+    try: 
+        txt = ""
+     
         for arg in args:
-            if type(arg) == int:
-                arg = unicode(arg)
-            if type(arg) == list:
-                arg = unicode(arg)
-            txt = txt + u"/" + arg
-        if txt == u'':
-            xbmc.log(u"WATCH: {0}".format(msg).encode('ascii','xmlcharrefreplace'), xbmc.LOGDEBUG)
-        else:
-            xbmc.log(u"WATCH: {0}#{1}#".format(msg, txt).encode('ascii','xmlcharrefreplace'), xbmc.LOGDEBUG)
+            txt = txt + arg + " | "
+        xbmc.log("WATCH: " + msg + ": " + txt)
     except:
-        print "Error in Debugoutput"
-        print msg
-        print args
+        print("WATCH default: Error in Debugoutput")
+        print(msg)
+        print(args)
         
 assetTYPE = xbmc.getInfoLabel('ListItem.DBtype')
 acceptedAssetTypes = ['episode', 'tvshow', 'movie', 'set', 'season']

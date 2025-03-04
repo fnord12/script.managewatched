@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="script.managewatched" name="Manage Watched" version="0.1.0" provider-name="fnord12">
 	<requires>
-		<import addon="xbmc.python" version="2.25.0"/>
+		<import addon="xbmc.python" version="3.0.0"/>
 	</requires>
 
 	<extension point="xbmc.python.script" library="default.py">
@@ -11,26 +11,26 @@
 	<extension point="kodi.context.item">
     <menu id="kodi.core.main">
         <menu>
-			<label>Manage Watched</label>
+			<label>Watched Status</label>
 	   
 			   <item library="reset.py">
-					<label>Reset Watched</label>
+					<label>Reset Watched (Ctr-R)</label>
 					<visible>String.IsEqual(ListItem.dbtype,movie) | String.IsEqual(ListItem.dbtype,episode)  | String.IsEqual(ListItem.dbtype,tvshow) | String.IsEqual(ListItem.dbtype,season) | String.IsEqual(ListItem.dbtype,set)</visible>
 				</item>
 				<item library="mark.py">
-					<label>Mark Watched</label>
+					<label>Mark Watched (Ctr-W)</label>
 					<visible>String.IsEqual(ListItem.dbtype,movie) | String.IsEqual(ListItem.dbtype,episode)  | String.IsEqual(ListItem.dbtype,tvshow) | String.IsEqual(ListItem.dbtype,season) | String.IsEqual(ListItem.dbtype,set)</visible>
 				</item>
 				<item library="unmark.py">
-					<label>Mark Unwatched</label>
+					<label>Mark Unwatched (Ctr-U)</label>
 					<visible>String.IsEqual(ListItem.dbtype,movie) | String.IsEqual(ListItem.dbtype,episode)  | String.IsEqual(ListItem.dbtype,tvshow) | String.IsEqual(ListItem.dbtype,season) | String.IsEqual(ListItem.dbtype,set)</visible>
 				</item>
 				<item library="clear.py">
-					<label>Clear Resume</label>
+					<label>Clear Resume (Ctr-C)</label>
 					<visible>String.IsEqual(ListItem.dbtype,movie) | String.IsEqual(ListItem.dbtype,episode)  | String.IsEqual(ListItem.dbtype,tvshow) | String.IsEqual(ListItem.dbtype,season) | String.IsEqual(ListItem.dbtype,set)</visible>
 				</item>
 				<item library="edit.py">
-					<label>Edit Played Dated</label>
+					<label>Edit Played Dated (Ctr-D)</label>
 					<visible>String.IsEqual(ListItem.dbtype,movie) | String.IsEqual(ListItem.dbtype,episode)</visible>
 				</item>
 		</menu>

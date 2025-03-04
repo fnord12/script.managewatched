@@ -12,23 +12,16 @@ from CWatchedDatabase import CVideoDatabase
 Updater = "JSON"
 
 def debug(msg, *args):
-    try:
-        txt=u''
-        msg=unicode(msg)
+    try: 
+        txt = ""
+     
         for arg in args:
-            if type(arg) == int:
-                arg = unicode(arg)
-            if type(arg) == list:
-                arg = unicode(arg)
-            txt = txt + u"/" + arg
-        if txt == u'':
-            xbmc.log(u"WATCH: {0}".format(msg).encode('ascii','xmlcharrefreplace'), xbmc.LOGDEBUG)
-        else:
-            xbmc.log(u"WATCH: {0}#{1}#".format(msg, txt).encode('ascii','xmlcharrefreplace'), xbmc.LOGDEBUG)
+            txt = txt + arg + " | "
+        xbmc.log("WATCH: " + msg + ": " + txt)
     except:
-        print "Error in Debugoutput"
-        print msg
-        print args
+        print("WATCH managewatched.py: Error in Debugoutput")
+        print(msg)
+        print(args)
 
 def GetVideosInCollection(assetTYPE,ID):
     debug("GetVideosInCollection")
@@ -400,7 +393,6 @@ def editLastPlayed():
     if assetTYPE == 'movie':
         paramsRaw = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovieDetails", "params": {"movieid": %d, "properties": ["title","lastplayed","playcount","resume"]}, "id": 1}' % ID)
         
-        paramsRaw = paramsRaw.decode(encoding="utf-8",errors="ignore")
         params = json.loads(paramsRaw)
         result = params['result']
         debug("result =", result)
@@ -430,7 +422,7 @@ def editLastPlayed():
     elif assetTYPE == 'episode':
         paramsRaw = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "method": "VideoLibrary.GetEpisodeDetails", "params": {"episodeid": %d, "properties": ["title","lastplayed","playcount","resume"]}, "id": 1}' % ID)
         
-        paramsRaw = paramsRaw.decode(encoding="utf-8",errors="ignore")
+        
         params = json.loads(paramsRaw)
         result = params['result']
         debug("result =", result)
