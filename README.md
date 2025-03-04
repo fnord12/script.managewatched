@@ -91,5 +91,5 @@ A tip if using MYSQL:
 ---
 ### Warnings
 
-Tested in Kodi 18 Leia only.  Tested with local files only (not with streaming, not with SMBs).  It should still work in other cases; i just don't know.
+Tested in Kodi 21 Omega.  Tested with local files only (not with streaming, not with SMBs).  It should still work in other cases; i just don't know.
 
