@@ -1,6 +1,7 @@
 ![Icon](https://github.com/fnord12/script.managewatched/blob/master/resources/icon.png)
 
 Managed Watch for Kodi
+for Kodi 21 Omega. 
 ======
 
 ## What is it?
